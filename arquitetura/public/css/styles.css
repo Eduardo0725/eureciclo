@@ -1,0 +1,14 @@
+#dateTimeAndOrder > * {
+    margin-bottom: 10px;
+}
+
+#dateTimeAndOrder .dateTime {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+#dateTimeAndOrder label {
+    margin-right: 20px;
+    cursor: pointer;
+}

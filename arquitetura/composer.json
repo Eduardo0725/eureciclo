@@ -1,0 +1,17 @@
+{
+    "name": "eduardo/arquitetura",
+    "authors": [
+        {
+            "name": "Eduardo0725",
+            "email": "eduardom0142@gmail.com"
+        }
+    ],
+    "require": {
+        "phpmailer/phpmailer": "^6.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/"
+        }
+    }
+}
