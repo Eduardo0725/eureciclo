@@ -3,11 +3,13 @@ version: '3'
 services:
     laravel.test:
         build:
-            context: ./vendor/laravel/sail/runtimes/8.0
+            # context: ./vendor/laravel/sail/runtimes/8.0 # PHP 8
+            context: ./vendor/laravel/sail/runtimes/7.4 # PHP 7.4
             dockerfile: Dockerfile
             args:
                 WWWGROUP: '${WWWGROUP}'
-        image: sail-8.0/app
+        # image: sail-8.0/app # PHP 8
+        image: sail-7.4/app # PHP 7.4
         ports:
             - '${APP_PORT:-80}:80'
         environment:
@@ -86,7 +88,7 @@ networks:
 volumes:
     sailmysql:
         driver: local
-#    sailpostgresql:
-#        driver: local
+    # sailpostgresql:
+    #    driver: local
     # sailredis:
     #     driver: local
