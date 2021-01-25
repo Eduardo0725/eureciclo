@@ -19,17 +19,31 @@ class StorageController extends Controller
     }
 
     /**
+     * Checks whether the extension is valid.
+     * @param string $extension
+     * @param array $acceptedExtensions
+     * @return bool
+     */
+    private function validateExtensions(string $extension, array $acceptedExtensions = ['txt', 'csv']): bool
+    {
+        return array_search($extension, $acceptedExtensions) !== false;
+    }
+
+    /**
      * Receives an upload, normalizes and stores it in a database.
      * @param Request $request
      * @return \Illuminate\Http\RedirectResponse
      */
     public function upload(Request $request): \Illuminate\Http\RedirectResponse
     {
-        $request->validate([
-            'file' => 'required|file'
+        $request->validate(['file' => 'required|file'], [
+            'file.required' => 'O campo do arquivo é obrigatório.'
         ]);
 
         try {
+            if(!$this->validateExtensions($request->file('file')->getClientOriginalExtension()))
+                throw new Exception("O tipo do arquivo não é válido.");
+
             $file = $this->normalize($request->file('file')->get());
 
             foreach ($file as $key => $str) {
