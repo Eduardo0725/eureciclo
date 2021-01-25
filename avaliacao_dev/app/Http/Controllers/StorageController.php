@@ -35,8 +35,12 @@ class StorageController extends Controller
             foreach ($file as $key => $str) {
                 $entry = str_getcsv($str);
 
-                if ($entry === false || $key === 0 || array_search(null, $entry) !== false)
-                    continue;
+                if (
+                    $entry === false ||
+                    $key === 0 ||
+                    array_search(null, $entry) !== false ||
+                    count($entry) !== 6
+                ) continue;
 
                 $arrSales[] = [
                     'buyer' => $entry[0],
