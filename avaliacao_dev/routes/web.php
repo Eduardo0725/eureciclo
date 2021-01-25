@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers as C;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,6 +18,6 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [C\HomeController::class, 'main']);
+
+Route::post('/upload', [C\StorageController::class, 'upload'])->name('upload');
