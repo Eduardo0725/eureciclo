@@ -18,6 +18,6 @@ use App\Http\Controllers as C;
 //     return view('welcome');
 // });
 
-Route::get('/', [C\HomeController::class, 'main']);
+Route::get('/', [C\HomeController::class, 'main'])->name('main');
 
 Route::post('/upload', [C\StorageController::class, 'upload'])->name('upload');

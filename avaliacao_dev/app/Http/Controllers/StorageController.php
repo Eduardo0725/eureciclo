@@ -13,9 +13,9 @@ class StorageController extends Controller
      * @param string $file
      * @return array
      */
-    private function normalize(string $file): array
+    public function normalize(string $file): array
     {
-        return explode("\n", preg_replace("/\t+/", ',', $file));
+        return explode("\n", trim(preg_replace("/\t+/", ',', $file)));
     }
 
     /**
