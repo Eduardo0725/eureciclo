@@ -1,32 +1,37 @@
 @extends('layouts.base')
 
-@section('content')
-    <h1>Hello World!</h1>
+@section('styles')
+    <link rel="stylesheet" href="css/app.css">
+@endsection
 
+@section('content')
     @isset($errors)
         @if ($errors->has('file'))
             @foreach($errors->get('file') as $erro)
-                <strong>{{ $erro }}</strong>
+                <strong class="error">{{ $erro }}</strong>
             @endforeach
         @endif
 
         @if ($errors->has('error'))
-            <strong>{{ $errors->get('error')[0] }}</strong>
+            <strong class="error">{{ $errors->get('error')[0] }}</strong>
         @endif
     @endisset
 
-    <h3>Envie seus dados</h3>
+    <h1>Envie seus dados</h1>
 
-    <form action="{{ route('upload') }}" method="post" enctype="multipart/form-data">
+    <form class="form-upload" action="{{ route('upload') }}" method="post" enctype="multipart/form-data">
         @csrf
 
-        <input type="file" name="file" id="file">
+        <div class="mb-3">
+            <label for="file" class="form-label">Escolha um arquivo com os dados das vendas:</label>
+            <input class="form-control" type="file" name="file" id="file" required accept=".txt,.csv">
+        </div>
 
-        <input type="submit" value="Enviar">
+        <input class="btn btn-primary submit" type="submit" value="Enviar">
     </form>
 
     @if ($sales)
-        <table>
+        <table class="table">
             <thead>
                 <tr>
                     <th>Comprador</th>
@@ -42,7 +47,7 @@
                     <tr>
                         <td>{{ $sale->buyer }}</td>
                         <td>{{ $sale->description }}</td>
-                        <td>{{ $sale->price_unit }}</td>
+                        <td>R$ {{ number_format($sale->price_unit, 2, ',', '.') }}</td>
                         <td>{{ $sale->lot }}</td>
                         <td>{{ $sale->address }}</td>
                         <td>{{ $sale->vendor }}</td>

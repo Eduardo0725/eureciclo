@@ -13,7 +13,7 @@
 
     <title>Desafio de programação</title>
 </head>
-<body>
+<body class="container">
     @yield('content')
 
     {{-- Bootstrap JS --}}

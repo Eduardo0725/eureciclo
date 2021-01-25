@@ -1,0 +1,17 @@
+.error {
+    display: block;
+}
+
+.error {
+    width: 100%;
+    padding: 20px;
+    margin: 5px 5px;
+
+    border-radius: 5px;
+    border: 2px solid var(--bs-danger);
+
+    background-color: #dc354671;
+    color: var(--bs-danger);
+
+    text-align: center;
+}
