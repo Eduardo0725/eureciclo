@@ -3,6 +3,18 @@
 @section('content')
     <h1>Hello World!</h1>
 
+    @isset($errors)
+        @if ($errors->has('file'))
+            @foreach($errors->get('file') as $erro)
+                <strong>{{ $erro }}</strong>
+            @endforeach
+        @endif
+
+        @if ($errors->has('error'))
+            <strong>{{ $errors->get('error')[0] }}</strong>
+        @endif
+    @endisset
+
     <h3>Envie seus dados</h3>
 
     <form action="{{ route('upload') }}" method="post" enctype="multipart/form-data">
