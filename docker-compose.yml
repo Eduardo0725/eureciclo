@@ -1,0 +1,32 @@
+version: '3'
+
+services:
+  app:
+    build: .
+    container_name: app
+    volumes:
+      - './:/usr/share/nginx'
+    ports:
+      - '80:80'
+    networks:
+      - backend
+
+  mysql:
+    image: 'mysql:5.7.22'
+    container_name: mysql
+    ports:
+      - '3306:3306'
+    environment:
+      MYSQL_ROOT_PASSWORD: ''
+      MYSQL_DATABASE: 'laravel'
+      MYSQL_USER: 'root'
+      MYSQL_PASSWORD: ''
+      MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
+    volumes:
+      - '.docker/dbdata:/var/lib/mysql'
+    networks:
+      - backend
+
+networks:
+  backend:
+    driver: bridge
